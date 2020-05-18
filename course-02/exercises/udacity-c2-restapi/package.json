@@ -16,9 +16,8 @@
   "author": "Gabriel Ruttner",
   "license": "ISC",
   "dependencies": {
-    "@types/bcrypt": "^3.0.0",
-    "@types/jsonwebtoken": "^8.3.9",
-    "aws-sdk": "^2.656.0",
+    "@types/jsonwebtoken": "^8.5.0",
+    "aws-sdk": "^2.678.0",
     "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
     "email-validator": "^2.0.4",
@@ -26,20 +25,21 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.18.2",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "^5.21.6",
+    "sequelize": "^5.21.9",
     "sequelize-typescript": "^0.6.11"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.30",
+    "@types/bcrypt": "^3.0.0",
+    "@types/bluebird": "^3.5.31",
     "@types/express": "^4.17.6",
-    "@types/node": "^11.15.10",
-    "@types/sequelize": "^4.28.8",
+    "@types/node": "^11.15.12",
+    "@types/sequelize": "^4.28.9",
     "@types/validator": "^10.11.3",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "mocha": "^6.2.3",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^5.20.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.2"
   }
 }
