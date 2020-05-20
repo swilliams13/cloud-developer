@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
@@ -17,7 +17,6 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // GET /filteredimage?image_url={{URL}}
   // endpoint to filter an image from a public url.
   // IT SHOULD
-  //    1
   //    1. validate the image_url query
   //    2. call filterImageFromURL(image_url) to filter the image
   //    3. send the resulting file in the response
@@ -27,7 +26,34 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // RETURNS
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
+
+  app.get("/filteredimage/", async ( req: Request, res: Response ) => {
+    let { image_url } = req.query;
+
+    //    1. validate the image_url query
+    if ( !image_url ) {
+      return res.status(400).send(`Image url is required`);
+    }
+
+    //    2. call filterImageFromURL(image_url) to filter the image
+    //    3. send the resulting file in the response
+    //    4. deletes any files on the server on finish of the response    
+    filterImageFromURL(image_url).then( filteredPath => {
+      res.status(200).sendFile(filteredPath, () => {
+        deleteLocalFiles([filteredPath]);
+      });
+    })
+
+
+    // BROKEN URL https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg 
+    // WORKS https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528_960_720.jpg
+      const filteredPath = await filterImageFromURL(image_url);
+      res.status(200).sendFile(filteredPath)
+  } );
+
+ 
   /**************************************************************************** */
+
 
   //! END @TODO1
   
