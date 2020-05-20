@@ -36,20 +36,18 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     }
 
     //    2. call filterImageFromURL(image_url) to filter the image
+    const filteredPath = await filterImageFromURL(image_url);
+
     //    3. send the resulting file in the response
     //    4. deletes any files on the server on finish of the response    
-    filterImageFromURL(image_url).then( filteredPath => {
+  
+    // BROKEN URL https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg 
+    // WORKS https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528_960_720.jpg  
       res.status(200).sendFile(filteredPath, () => {
         deleteLocalFiles([filteredPath]);
       });
-    })
-
-
-    // BROKEN URL https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg 
-    // WORKS https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528_960_720.jpg
-      const filteredPath = await filterImageFromURL(image_url);
-      res.status(200).sendFile(filteredPath)
-  } );
+  
+    });
 
  
   /**************************************************************************** */
